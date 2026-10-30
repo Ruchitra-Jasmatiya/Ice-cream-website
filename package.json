@@ -10,7 +10,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "api": "node server/dev.js",
+    "dev:all": "node scripts/dev-all.mjs",
+    "test:api": "node scripts/test-api.mjs"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
