@@ -11,11 +11,13 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import './navbar.css'; // Import the CSS file
+import { useStore } from '../context/StoreContext.jsx';
 
 // Import logo correctly
 import Logo from "../assets/images/logo.png";
 
 const Navbar = () => {
+  const { cartCount, openCart } = useStore();
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
 
@@ -87,6 +89,17 @@ const Navbar = () => {
       <div className="nav-icons">
         <Search className="icon" onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.2)")} onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")} />
         <Heart className="icon" onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.2)")} onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")} />
+        <button
+          type="button"
+          aria-label="Open cart"
+          onClick={openCart}
+          style={{ position: "relative", background: "none", border: "none", padding: 0, cursor: "pointer", display: "flex" }}
+        >
+          <ShoppingCart className="icon" />
+          {cartCount > 0 && (
+            <span style={{ position: "absolute", top: -8, right: -10, minWidth: 18, height: 18, padding: "0 5px", borderRadius: 9, background: "#ec407a", color: "#fff", fontSize: 11, fontWeight: 700, display: "grid", placeItems: "center" }}>{cartCount}</span>
+          )}
+        </button>
         <Link to="/login">
           <User className="icon" onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.2)")} onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")} />
         </Link>

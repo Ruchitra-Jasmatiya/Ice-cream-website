@@ -11,11 +11,15 @@ import About from './components/about.jsx';
 import Contact from './components/contact.jsx';
 import Footer from './components/footer.jsx';
 import './components/contact.css';
+import { StoreProvider } from './context/StoreContext.jsx';
+import CartDrawer, { AnnouncementBar, Toaster } from './components/CartDrawer.jsx';
 
 
 function App() {
   return (
+    <StoreProvider>
     <Router>
+      <AnnouncementBar />
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -26,7 +30,10 @@ function App() {
         <Route path="/login" element={<Login />} /> {/* <-- login route */}
       </Routes>
       <Footer />
+      <CartDrawer />
+      <Toaster />
     </Router>
+    </StoreProvider>
   );
 }
 
